@@ -1,8 +1,5 @@
-import 'package:animated_random_button/bouncing_dice_button.dart';
-import 'package:animated_random_button/coin_button.dart';
+import 'package:animated_random_button/animated_random_button.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_random_button/random_color_wheel.dart';
-import 'package:animated_random_button/magic_sphere.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

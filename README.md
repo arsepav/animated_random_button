@@ -16,7 +16,7 @@ Add the following line to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  animated_random_buttons: ^1.0.0
+  animated_random_button: ^1.0.0
 ```
 
 Then run `flutter pub get` in your terminal to install the package.
@@ -26,7 +26,7 @@ Then run `flutter pub get` in your terminal to install the package.
 Import the package in your Dart file:
 
 ```dart
-import 'package:animated_random_buttons/animated_random_buttons.dart';
+import 'package:animated_random_button/animated_random_button.dart';
 ```
 
 ### Coin Button
