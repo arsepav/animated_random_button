@@ -1,0 +1,34 @@
+name: diceandcoin
+description: The Animated Random Button Flutter Package provides a set of four animated buttons that generate random values for different scenarios.
+
+homepage: https://github.com/arsepav/Random-Widgets-Package/
+
+
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sensors_plus: ^3.0.2
+
+
+  cupertino_icons: ^1.0.2
+  stagexl_particle: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - coins/
+
+
