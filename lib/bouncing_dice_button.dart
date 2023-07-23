@@ -16,6 +16,7 @@ class DiceButtonValue {
   int value = 0;
 }
 
+// ignore: must_be_immutable
 class BouncingDiceButton extends StatefulWidget {
   final double size;
   final int start;
