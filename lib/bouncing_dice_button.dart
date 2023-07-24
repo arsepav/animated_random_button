@@ -12,8 +12,8 @@ int sign(double n) {
   return 0;
 }
 
-class DiceButtonValue {
-  int value = 0;
+class DiceButtonController {
+  late int value;
 }
 
 // ignore: must_be_immutable
@@ -22,12 +22,8 @@ class BouncingDiceButton extends StatefulWidget {
   final int start;
   final int end;
   final Duration duration;
-  int value = 1;
+  DiceButtonController controller;
 
-
-  int getValue(){
-    return value;
-  }
 
   final ui.VoidCallback? onPressed;
 
@@ -37,6 +33,7 @@ class BouncingDiceButton extends StatefulWidget {
     this.end = 7,
     required this.onPressed,
     this.duration = const Duration(milliseconds: 500),
+    required this.controller,
   });
 
   @override
@@ -96,7 +93,7 @@ class _BouncingDiceButtonState extends State<BouncingDiceButton>
 
   void _changeNumber() {
     setState(() {
-      widget.value = Random().nextInt(widget.end - widget.start) + widget.start;
+      widget.controller.value = Random().nextInt(widget.end - widget.start) + widget.start;
     });
   }
 
@@ -107,7 +104,7 @@ class _BouncingDiceButtonState extends State<BouncingDiceButton>
   void _onTap() {
     if (!_controller.isAnimating) {
       _controller.forward();
-      Future.delayed(widget.duration, () {
+      Future.delayed(widget.duration*2.1, () {
         widget.onPressed?.call();
       });
     }
@@ -115,7 +112,7 @@ class _BouncingDiceButtonState extends State<BouncingDiceButton>
 
   @override
   Widget build(BuildContext context) {
-    widget.value = Random().nextInt(widget.end - widget.start) + widget.start;
+    widget.controller.value = Random().nextInt(widget.end - widget.start) + widget.start;
     return GestureDetector(
       onTap: _onTap,
       child: AnimatedBuilder(
@@ -127,7 +124,7 @@ class _BouncingDiceButtonState extends State<BouncingDiceButton>
               angle: _rotation,
               child: Center(
                   child: Dice(
-                value: widget.value,
+                value: widget.controller.value,
                 size: widget.size,
               )),
             ),

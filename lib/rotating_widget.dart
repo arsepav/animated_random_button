@@ -36,8 +36,6 @@ class _RotationAnimationWheelState extends State<RotationAnimationWheel>
   double position = 0;
   late double rotationRad;
 
-  // final ui.VoidCallback? onPressed;
-  // bool waitForAnimation;
 
   _RotationAnimationWheelState();
 
@@ -82,17 +80,19 @@ class _RotationAnimationWheelState extends State<RotationAnimationWheel>
     rotationRad = (Random().nextInt(720) + 360) * pi / 180;
     return GestureDetector(
       onTap: () {
-        if (!_animationController.isAnimating) {
-          setState(() {});
-          _startAnimation();
-        }
         if (widget.waitForAnimation) {
-          Future.delayed(widget.duration, () {
+
+          Future.delayed(widget.duration*1.1, () {
             widget.onPressed?.call();
           });
         } else {
           widget.onPressed?.call();
         }
+        if (!_animationController.isAnimating) {
+          setState(() {});
+          _startAnimation();
+        }
+
       },
       child: AnimatedBuilder(
         animation: _animationController,

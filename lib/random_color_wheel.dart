@@ -51,6 +51,10 @@ class TriangleWidget extends StatelessWidget {
   }
 }
 
+class RandomColorWheelController {
+  late Color color;
+}
+
 class RandomColorWheel extends StatelessWidget {
   List<Color> colors;
   double size;
@@ -58,6 +62,8 @@ class RandomColorWheel extends StatelessWidget {
   late RotationAnimationWheel widget;
   final ui.VoidCallback? onPressed;
   bool waitForAnimation;
+  RandomColorWheelController controller;
+  late RotationAnimationWheel wheel;
 
   RandomColorWheel({
     super.key,
@@ -66,32 +72,38 @@ class RandomColorWheel extends StatelessWidget {
     required this.onPressed,
     this.duration = const Duration(milliseconds: 500),
     this.waitForAnimation = true,
+    required this.controller,
   });
 
   Color getColor() {
     return colors[colors.length -
         1 -
-        (((widget.getPosition() - pi / 2) % (pi * 2)) / 2 / pi * colors.length)
+        (((wheel.getPosition() - pi / 2) % (pi * 2)) / 2 / pi * colors.length)
             .floor()];
   }
 
   @override
   Widget build(BuildContext context) {
+    wheel = RotationAnimationWheel(
+      onPressed: onPressed,
+      size: size,
+      duration: duration,
+      waitForAnimation: waitForAnimation,
+      child: ColorfulPie(
+        colors: colors,
+        size: size,
+      ),
+    );
+    controller.color = colors[colors.length -
+        1 -
+        (((wheel.getPosition() - pi / 2) % (pi * 2)) / 2 / pi * colors.length)
+            .floor()];
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
         Column(
           children: [
-            RotationAnimationWheel(
-              onPressed: onPressed,
-              size: size,
-              child: ColorfulPie(
-                colors: colors,
-                size: size,
-              ),
-              duration: duration,
-              waitForAnimation: waitForAnimation,
-            ),
+            wheel,
             SizedBox(
               height: 0.1 * size,
             ),

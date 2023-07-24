@@ -1,5 +1,4 @@
 import 'package:animated_random_button/animated_random_button.dart';
-import 'package:animated_random_button/coin_button.dart';
 import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +16,8 @@ class MyApp extends StatelessWidget {
     final eurController = CoinController();
     final rubController = CoinController();
     final centController = CoinController();
+    final colorController = RandomColorWheelController();
+    final diceButtonController = DiceButtonController();
     return MaterialApp(
       title: 'Example for Random Widget Tools package',
       home: Scaffold(
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
                 height: 100,
               ),
               RandomColorWheel(
+                controller: colorController,
                 colors: const [
                   Colors.black,
                   Colors.amber,
@@ -42,10 +44,10 @@ class MyApp extends StatelessWidget {
                 ],
                 size: 100,
                 onPressed: () {
+                  print(colorController.color);
                   print("Wheel is spinning");
                 },
                 duration: const Duration(seconds: 1),
-                waitForAnimation: false,
               ),
               const SizedBox(
                 width: 30,
@@ -55,48 +57,50 @@ class MyApp extends StatelessWidget {
                 height: 50,
               ),
               BouncingDiceButton(
+                controller: diceButtonController,
                 start: 1,
                 end: 6,
-                duration: const Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 2000),
                 onPressed: () {
+                  print(diceButtonController.value);
                   print("hello");
                 },
               ),
               const SizedBox(
                 height: 50,
               ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CoinButton(
-                    onPressed: () {},
-                    radius: 100,
-                    coin: Coins.Euro,
-                    duration: const Duration(seconds: 2),
-                    coinController: eurController,
-                  ),
-                  const SizedBox(
-                    width: 25,
-                  ),
-                  CoinButton(
-                    onPressed: () {},
-                    radius: 100,
-                    coin: Coins.Ruble,
-                    duration: const Duration(seconds: 2),
-                    coinController: rubController,
-                  ),
-                  const SizedBox(
-                    width: 25,
-                  ),
-                  CoinButton(
-                    onPressed: () {},
-                    radius: 100,
-                    coin: Coins.Cent,
-                    duration: const Duration(seconds: 2),
-                    coinController: centController,
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisSize: MainAxisSize.min,
+              //   children: [
+              //     CoinButton(
+              //       onPressed: () {},
+              //       radius: 100,
+              //       coin: Coins.Euro,
+              //       duration: const Duration(seconds: 2),
+              //       coinController: eurController,
+              //     ),
+              //     const SizedBox(
+              //       width: 25,
+              //     ),
+              //     CoinButton(
+              //       onPressed: () {},
+              //       radius: 100,
+              //       coin: Coins.Ruble,
+              //       duration: const Duration(seconds: 2),
+              //       coinController: rubController,
+              //     ),
+              //     const SizedBox(
+              //       width: 25,
+              //     ),
+              //     CoinButton(
+              //       onPressed: () {},
+              //       radius: 100,
+              //       coin: Coins.Cent,
+              //       duration: const Duration(seconds: 2),
+              //       coinController: centController,
+              //     ),
+              //   ],
+              // ),
               const SizedBox(
                 height: 50,
               ),
