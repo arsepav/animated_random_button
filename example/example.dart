@@ -1,4 +1,5 @@
 import 'package:animated_random_button/animated_random_button.dart';
+import 'package:animated_random_button/coin_button.dart';
 import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final eurController = CoinController();
+    final rubController = CoinController();
+    final centController = CoinController();
     return MaterialApp(
       title: 'Example for Random Widget Tools package',
       home: Scaffold(
@@ -53,7 +57,7 @@ class MyApp extends StatelessWidget {
               BouncingDiceButton(
                 start: 1,
                 end: 6,
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
                 onPressed: () {
                   print("hello");
                 },
@@ -69,6 +73,7 @@ class MyApp extends StatelessWidget {
                     radius: 100,
                     coin: Coins.Euro,
                     duration: const Duration(seconds: 2),
+                    coinController: eurController,
                   ),
                   const SizedBox(
                     width: 25,
@@ -78,6 +83,7 @@ class MyApp extends StatelessWidget {
                     radius: 100,
                     coin: Coins.Ruble,
                     duration: const Duration(seconds: 2),
+                    coinController: rubController,
                   ),
                   const SizedBox(
                     width: 25,
@@ -87,6 +93,7 @@ class MyApp extends StatelessWidget {
                     radius: 100,
                     coin: Coins.Cent,
                     duration: const Duration(seconds: 2),
+                    coinController: centController,
                   ),
                 ],
               ),

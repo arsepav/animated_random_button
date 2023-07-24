@@ -2,7 +2,24 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'dart:ui' as ui;
 
-enum Coins { Ruble, Euro, Cent }
+class Coins {
+  Coins(this._value);
+
+  final _value;
+
+  const Coins._internal(this._value);
+
+  @override
+  toString() => '$_value';
+  static const Ruble = Coins._internal('Rubble');
+  static const Euro = Coins._internal('Euro');
+  static const Cent = Coins._internal('Cent');
+}
+
+class CoinController extends ChangeNotifier {
+  late bool isHead;
+  late bool isTails;
+}
 
 class CoinButton extends StatefulWidget {
   final double radius;
@@ -10,6 +27,7 @@ class CoinButton extends StatefulWidget {
   final Coins coin;
   final Duration duration;
   final bool waitForAnimation;
+  final CoinController coinController;
 
   const CoinButton({
     this.onPressed,
@@ -17,7 +35,7 @@ class CoinButton extends StatefulWidget {
     super.key,
     required this.coin,
     this.duration = const Duration(milliseconds: 500),
-    this.waitForAnimation = true,
+    this.waitForAnimation = true, required this.coinController,
   });
 
   @override
@@ -59,27 +77,29 @@ class _CoinButtonState extends State<CoinButton> with TickerProviderStateMixin {
       radius: widget.radius,
       controller: controller,
       coin: widget.coin,
-      duration: widget.duration,
+      duration: widget.duration, coinController: widget.coinController,
     );
   }
 }
 
+// ignore: must_be_immutable
 class _StaggeredAnimation extends StatelessWidget {
   bool _odd = false;
   final bool waitForAnimation;
+  final CoinController coinController;
   final Duration duration;
 
   _StaggeredAnimation(
       {this.onPressed,
-      required this.duration,
-      required this.waitForAnimation,
-      required double this.radius,
-      Key? key,
-      required this.controller,
-      required this.coin})
+        required this.duration,
+        required this.waitForAnimation,
+        required this.radius,
+        Key? key,
+        required this.controller,
+        required this.coin, required this.coinController})
       : flip = Tween(begin: 0.0, end: 10 * pi).animate(CurvedAnimation(
-            parent: controller,
-            curve: const Interval(0.0, 0.4, curve: Curves.bounceIn))),
+      parent: controller,
+      curve: const Interval(0.0, 0.4, curve: Curves.bounceIn))),
         size = Tween(begin: radius * 2, end: radius * 2).animate(
             CurvedAnimation(
                 parent: controller,
@@ -103,6 +123,8 @@ class _StaggeredAnimation extends StatelessWidget {
 
   Widget _buildAnimation(BuildContext context, Widget? child) {
     _checkHeadTail();
+    coinController.isHead = !_odd;
+    coinController.isTails = _odd;
     return GestureDetector(
       child: Transform(
         alignment: FractionalOffset.center,
@@ -114,9 +136,7 @@ class _StaggeredAnimation extends StatelessWidget {
               shape: BoxShape.circle,
               image: DecorationImage(
                 image: ExactAssetImage(
-                  _odd
-                      ? "coins/${coin.toString().split('.')[1]}Tail.png"
-                      : "coins/${coin.toString().split('.')[1]}Head.png",
+                  _odd ? "coins/${coin}Tail.png" : "coins/${coin}Head.png",
                 ),
                 fit: BoxFit.fitHeight,
               ),
