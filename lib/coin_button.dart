@@ -136,7 +136,7 @@ class _StaggeredAnimation extends StatelessWidget {
               shape: BoxShape.circle,
               image: DecorationImage(
                 image: ExactAssetImage(
-                  _odd ? "coins/${coin}Tail.png" : "coins/${coin}Head.png",
+                  _odd ? "lib/coins/${coin}Tail.png" : "lib/coins/${coin}Head.png",
                 ),
                 fit: BoxFit.fitHeight,
               ),
