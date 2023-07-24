@@ -11,7 +11,7 @@ class Coins {
 
   @override
   toString() => '$_value';
-  static const Ruble = Coins._internal('Rubble');
+  static const Ruble = Coins._internal('Ruble');
   static const Euro = Coins._internal('Euro');
   static const Cent = Coins._internal('Cent');
 }

@@ -69,38 +69,38 @@ class MyApp extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              // Row(
-              //   mainAxisSize: MainAxisSize.min,
-              //   children: [
-              //     CoinButton(
-              //       onPressed: () {},
-              //       radius: 100,
-              //       coin: Coins.Euro,
-              //       duration: const Duration(seconds: 2),
-              //       coinController: eurController,
-              //     ),
-              //     const SizedBox(
-              //       width: 25,
-              //     ),
-              //     CoinButton(
-              //       onPressed: () {},
-              //       radius: 100,
-              //       coin: Coins.Ruble,
-              //       duration: const Duration(seconds: 2),
-              //       coinController: rubController,
-              //     ),
-              //     const SizedBox(
-              //       width: 25,
-              //     ),
-              //     CoinButton(
-              //       onPressed: () {},
-              //       radius: 100,
-              //       coin: Coins.Cent,
-              //       duration: const Duration(seconds: 2),
-              //       coinController: centController,
-              //     ),
-              //   ],
-              // ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CoinButton(
+                    onPressed: () {},
+                    radius: 100,
+                    coin: Coins.Euro,
+                    duration: const Duration(seconds: 2),
+                    coinController: eurController,
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  CoinButton(
+                    onPressed: () {},
+                    radius: 100,
+                    coin: Coins.Ruble,
+                    duration: const Duration(seconds: 2),
+                    coinController: rubController,
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  CoinButton(
+                    onPressed: () {},
+                    radius: 100,
+                    coin: Coins.Cent,
+                    duration: const Duration(seconds: 2),
+                    coinController: centController,
+                  ),
+                ],
+              ),
               const SizedBox(
                 height: 50,
               ),
