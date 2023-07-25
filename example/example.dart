@@ -1,4 +1,5 @@
 import 'package:animated_random_button/animated_random_button.dart';
+import 'package:animated_random_button/coin_button.dart';
 import 'package:animated_random_button/magic_sphere.dart';
 import 'package:flutter/material.dart';
 void main() async {
@@ -9,6 +10,13 @@ void main() async {
   ));
 }
 
+class newCoins extends Coins {
+
+  static const myFancyCoin = Coins(Coin('assets/FancyCoinHead.png','assets/FancyCoinTail.png'));
+
+  newCoins(super.value);
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -17,6 +25,7 @@ class MyApp extends StatelessWidget {
     final eurController = CoinController();
     final rubController = CoinController();
     final centController = CoinController();
+    final fancyCoinController = CoinController();
     final colorController = RandomColorWheelController();
     final diceButtonController = DiceButtonController();
     final magicBallController = MagicBallController();
@@ -74,6 +83,10 @@ class MyApp extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  CoinButton(radius: 100, coin: newCoins.myFancyCoin, coinController: fancyCoinController, onPressed: (){},),
+                  const SizedBox(
+                    width: 25,
+                  ),
                   CoinButton(
                     onPressed: () {},
                     radius: 100,

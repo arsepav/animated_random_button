@@ -3,7 +3,7 @@ import 'dart:math';
 import 'dart:ui' as ui;
 
 class Coins {
-  Coins(this._value);
+  const Coins(this._value);
 
   final Coin _value;
 

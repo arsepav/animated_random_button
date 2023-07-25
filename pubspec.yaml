@@ -31,5 +31,6 @@ flutter:
     - packages/animated_random_button/coins/EuroTail.png
     - packages/animated_random_button/coins/CentHead.png
     - packages/animated_random_button/coins/CentTail.png
+    - assets/
 
 
