@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 
+class MagicBallController extends ChangeNotifier {
+  late String answer;
+}
+
 class Magic8Ball extends StatefulWidget {
   final double radius;
   final num numberOfShakes;
@@ -9,6 +13,8 @@ class Magic8Ball extends StatefulWidget {
   final Duration durationOfShake;
   final double shakeDistance;
   final List<String> answers;
+  final MagicBallController controller;
+  final VoidCallback onPressed;
 
   const Magic8Ball({
     super.key,
@@ -36,7 +42,7 @@ class Magic8Ball extends StatefulWidget {
       'My sources say no',
       'Very doubtful',
       'My reply\n is no'
-    ],
+    ], required this.controller, required this.onPressed,
   });
 
   @override
@@ -76,6 +82,8 @@ class _Magic8BallState extends State<Magic8Ball>
             _generateAnswer();
             showAnswer = true;
           });
+          widget.controller.answer = widget.answers[_randomNumber];
+          widget.onPressed.call();
         }
       }
     });

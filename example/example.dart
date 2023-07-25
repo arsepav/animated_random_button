@@ -1,4 +1,5 @@
 import 'package:animated_random_button/animated_random_button.dart';
+import 'package:animated_random_button/magic_sphere.dart';
 import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     final centController = CoinController();
     final colorController = RandomColorWheelController();
     final diceButtonController = DiceButtonController();
+    final magicBallController = MagicBallController();
     return MaterialApp(
       title: 'Example for Random Widget Tools package',
       home: Scaffold(
@@ -104,12 +106,14 @@ class MyApp extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              const Magic8Ball(
+              Magic8Ball(
                 radius: 100,
                 shakeDistance: 15,
                 numberOfShakes: 10,
                 durationOfShake: Duration(milliseconds: 100),
                 answers: ["yes", "definetly yes"],
+                controller: magicBallController,
+                onPressed: (){print(magicBallController.answer);},
               ),
               const SizedBox(
                 height: 50,
