@@ -25,6 +25,11 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/coins/
+    - packages/animated_random_button/coins/RubleHead.png
+    - packages/animated_random_button/coins/RubleTail.png
+    - packages/animated_random_button/coins/EuroHead.png
+    - packages/animated_random_button/coins/EuroTail.png
+    - packages/animated_random_button/coins/CentHead.png
+    - packages/animated_random_button/coins/CentTail.png
 
 

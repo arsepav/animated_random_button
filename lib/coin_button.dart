@@ -5,20 +5,27 @@ import 'dart:ui' as ui;
 class Coins {
   Coins(this._value);
 
-  final _value;
+  final Coin _value;
 
   const Coins._internal(this._value);
 
   @override
   toString() => '$_value';
-  static const Ruble = Coins._internal('Ruble');
-  static const Euro = Coins._internal('Euro');
-  static const Cent = Coins._internal('Cent');
+  static const Ruble = Coins._internal(Coin('packages/animated_random_button/coins/RubleHead.png','packages/animated_random_button/coins/RubleTail.png'));
+  static const Euro = Coins._internal(Coin('packages/animated_random_button/coins/EuroHead.png','packages/animated_random_button/coins/EuroTail.png'));
+  static const Cent = Coins._internal(Coin('packages/animated_random_button/coins/CentHead.png','packages/animated_random_button/coins/CentTail.png'));
 }
 
 class CoinController extends ChangeNotifier {
   late bool isHead;
   late bool isTails;
+}
+
+class Coin {
+ final String HeadPATH;
+ final String TailPATH;
+
+  const Coin(this.HeadPATH, this.TailPATH);
 }
 
 class CoinButton extends StatefulWidget {
@@ -136,7 +143,7 @@ class _StaggeredAnimation extends StatelessWidget {
               shape: BoxShape.circle,
               image: DecorationImage(
                 image: ExactAssetImage(
-                  _odd ? "lib/coins/${coin}Tail.png" : "lib/coins/${coin}Head.png",
+                  _odd ? coin._value.TailPATH : coin._value.HeadPATH,
                 ),
                 fit: BoxFit.fitHeight,
               ),
